@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  fdb:
+    image: foundationdb/foundationdb:6.1.12
+    environment:
+      FDB_COORDINATOR: fdb
+  app:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - fdb
+    environment:
+      FDB_COORDINATOR: fdb
