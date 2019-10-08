@@ -19,7 +19,7 @@ public class Application implements CommandLineRunner {
         FDB fdb = FDB.selectAPIVersion(610);
 
         try(Database db = fdb.open()) {
-            db.options().setTransactionTimeout(5_000);
+            db.options().setTransactionTimeout(10_000);
             // Run an operation on the database
             db.run(tr -> {
                 tr.set(Tuple.from("hello").pack(), Tuple.from("world").pack());

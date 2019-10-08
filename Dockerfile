@@ -6,16 +6,16 @@ USER root
 
 RUN yum -y install bind-utils
 
-RUN curl -SLO https://www.foundationdb.org/downloads/6.1.12/rhel7/installers/foundationdb-clients-6.1.12-1.el7.x86_64.rpm
-RUN rpm -Uvh foundationdb-clients-6.1.12-1.el7.x86_64.rpm \
-    foundationdb-clients-6.1.12-1.el7.x86_64.rpm
+RUN curl -SLO https://www.foundationdb.org/downloads/6.1.8/rhel7/installers/foundationdb-clients-6.1.8-1.el7.x86_64.rpm
+RUN rpm -Uvh foundationdb-clients-6.1.8-1.el7.x86_64.rpm \
+    foundationdb-clients-6.1.8-1.el7.x86_64.rpm
 
 RUN mkdir -p /app
 WORKDIR /app
 
-COPY --from=foundationdb/foundationdb:6.1.12 /usr/lib/libfdb_c.so /usr/lib
-COPY --from=foundationdb/foundationdb:6.1.12 /usr/bin/fdbcli /usr/bin/
-COPY --from=foundationdb/foundationdb:6.1.12 /var/fdb/scripts/create_cluster_file.bash /app
+COPY --from=foundationdb/foundationdb:6.1.8 /usr/lib/libfdb_c.so /usr/lib
+COPY --from=foundationdb/foundationdb:6.1.8 /usr/bin/fdbcli /usr/bin/
+COPY --from=foundationdb/foundationdb:6.1.8 /var/fdb/scripts/create_cluster_file.bash /app
 
 EXPOSE 8080
 
